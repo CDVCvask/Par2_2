@@ -33,6 +33,14 @@ class Menu:
         print("1.Realizar pedido")
         print("2.Ver pedidos")
         print("3.Salir")
+class Codes:
+    def Save_codes(self,pedidos):
+        with open("codigos.txt","w") as file:
+            file.write(f"{pedidos}\n")
+    def Load_codes(self):
+        with open("codigos.txt","r") as file:
+            pass
+codes = Codes()
 contP = 0
 see_p = See_Pedido()
 menus = Menu()
@@ -89,4 +97,5 @@ while 0 != 1:
         print("El tipo de dato ingresado no es valido")
     if out == 1:
         see_p.Save_Pedidos()
+        codes.Save_codes(contP)
         break
