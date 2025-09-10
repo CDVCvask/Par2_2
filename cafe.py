@@ -7,7 +7,12 @@ class Pedido:
         self.prioridad = prioridad
 class See_Pedido:
     def __init__(self):
-        pedidos = {}
+        self.pedidos = {}
+    def Agregar_pedido(self,pedido):
+        self.pedidos[pedido.codigo] = {'Cliente':pedido.cliente,'Producto':pedido.producto,'Cantidad':pedido.cantidad,'Prioridad':pedido.prioridad}
+    def Mostrar_pedidos(self):
+        for code,value in self.pedidos.items():
+            print(f"Codigo: {code}--Cliente: {value['Cliente']}--Producto: {value['Producto']}--Cantidad: {value['Cantidad']}--Prioridad: {value['Prioridad']}")
 class Menu:
     def principal(self):
         print("Bienvenido a la cafeteria bing bong")
@@ -48,9 +53,19 @@ while 0 != 1:
                             else:
                                 urgent = input("El pedido es Normal o Urgente?(Para normal ingrese N para Urgente ingrese U): ")
                                 if urgent.upper() == "N":
-                                    urgen = "Normal"
+                                    urgent = "Normal"
+                                    new_pedido = Pedido(code_p,name,product,num,urgent)
+                                    see_p.Agregar_pedido(new_pedido)
+                                    contP += 1
+                                elif urgent.upper() == "U":
+                                    urgent = "Urgente"
+                                    new_pedido = Pedido(code_p, name, product, num, urgent)
+                                    see_p.Agregar_pedido(new_pedido)
+                                    contP += 1
+                                else:
+                                    print("El tipo de pedido ingresado no es valido")
             case "2":
-                print("Ver pedidos")
+                see_p.Mostrar_pedidos()
             case "3":
                 print("Gracias por utilizar el programa")
                 out = 1
