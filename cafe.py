@@ -30,14 +30,15 @@ class See_Pedido:
                     self.pedidos[codigo] = {'Cliente':clientes,'Producto':productos,'Cantidad':cantidad,'Prioridad':prioridad}
         except FileNotFoundError:
             print("No existe el archivo pedidos.log.txt")
-    def Urgente(self):
+class Notification:
+    def Urgente(self,pedidos):
         ur = 0
-        for code,value in self.pedidos.items():
+        for code,value in pedidos.items():
             if value['Prioridad'] == "Urgente":
                 ur = ur + 1
         print(f"Hay {ur} pedidos urgentes")
         cont = 1
-        for code,value in self.pedidos.items():
+        for code,value in pedidos.items():
             if value['Prioridad'] == "Urgente":
                 print(f"Pedido Urgente {cont}")
                 print(f"Codigo: {code}--Cliente: {value['Cliente']}--Producto: {value['Producto']}--Cantidad: {value['Cantidad']}--Prioridad: {value['Prioridad']}")
@@ -71,7 +72,8 @@ contP = codes.Get_cont_p()
 see_p = See_Pedido()
 menus = Menu()
 out = 0
-see_p.Urgente()
+noti = Notification()
+noti.Urgente(see_p.pedidos)
 while 0 != 1:
     try:
         menus.principal()
