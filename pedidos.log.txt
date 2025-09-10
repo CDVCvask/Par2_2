@@ -1,1 +1,1 @@
-P0:Gojo:pan:15:Urgente
+P2:a:a:1:Normal

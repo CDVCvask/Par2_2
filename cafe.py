@@ -37,17 +37,24 @@ class Menu:
         print("2.Ver pedidos")
         print("3.Salir")
 class Codes:
+    def __init__(self):
+        self.cont_p = 0
+        self.Load_codes()
     def Save_codes(self,pedidos):
         with open("codigos.txt","w") as file:
-            file.write(f"{pedidos}\n")
+            file.write(f"{pedidos}:{0}\n")
     def Load_codes(self):
         try:
             with open("codigos.txt","r") as file:
-                pass
+                for line in file:
+                    (Cont_p,cont) = line.split(":")
+                    self.cont_p = int(Cont_p)
         except FileNotFoundError:
             print("No existe el archivo codigos.txt")
+    def Get_cont_p(self):
+        return self.cont_p
 codes = Codes()
-contP = 0
+contP = codes.Get_cont_p()
 see_p = See_Pedido()
 menus = Menu()
 out = 0
