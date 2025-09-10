@@ -19,9 +19,9 @@ class See_Pedido:
             print(" ")
             cont += 1
     def Save_Pedidos(self):
-        for code,value in self.pedidos.items():
-                with open("pedidos.log.txt","w") as file:
-                    file.write(f"{code}:{value['Cliente']}:{value['Producto']}:{value['Cantidad']}:{value['Prioridad']}\n")
+        with open("pedidos.log.txt", "w") as file:
+            for code,value in self.pedidos.items():
+                            file.write(f"{code}:{value['Cliente']}:{value['Producto']}:{value['Cantidad']}:{value['Prioridad']}")
     def Load_Pedidos(self):
         try:
             with open("pedidos.log.txt","r") as file:
