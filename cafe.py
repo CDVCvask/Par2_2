@@ -8,6 +8,7 @@ class Pedido:
 class See_Pedido:
     def __init__(self):
         self.pedidos = {}
+        self.Load_Pedidos()
     def Agregar_pedido(self,pedido):
         self.pedidos[pedido.codigo] = {'Cliente':pedido.cliente,'Producto':pedido.producto,'Cantidad':pedido.cantidad,'Prioridad':pedido.prioridad}
     def Mostrar_pedidos(self):
@@ -17,6 +18,12 @@ class See_Pedido:
             print(f"Codigo: {code}--Cliente: {value['Cliente']}--Producto: {value['Producto']}--Cantidad: {value['Cantidad']}--Prioridad: {value['Prioridad']}")
             print(" ")
             cont += 1
+    def Save_Pedidos(self):
+        for code,value in self.pedidos.items():
+                with open("pedidos.log.txt","w") as file:
+                    file.write(f"{code}:{value['Cliente']}:{value['Producto']}:{value['Cantidad']}:{value['Prioridad']}\n")
+    def Load_Pedidos(self):
+        pass
 class Menu:
     def principal(self):
         print("Bienvenido a la cafeteria bing bong")
@@ -78,4 +85,5 @@ while 0 != 1:
     except ValueError:
         print("El tipo de dato ingresado no es valido")
     if out == 1:
+        see_p.Save_Pedidos()
         break
