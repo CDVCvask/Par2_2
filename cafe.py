@@ -38,9 +38,11 @@ class See_Pedido:
         print(f"Hay {ur} pedidos urgentes")
         cont = 1
         for code,value in self.pedidos.items():
-            print(f"Pedido Urgente {cont}")
-            print(f"Codigo: {code}--Cliente: {value['Cliente']}--Producto: {value['Producto']}--Cantidad: {value['Cantidad']}--Prioridad: {value['Prioridad']}")
-            print(" ")
+            if value['Prioridad'] == "Urgente":
+                print(f"Pedido Urgente {cont}")
+                print(f"Codigo: {code}--Cliente: {value['Cliente']}--Producto: {value['Producto']}--Cantidad: {value['Cantidad']}--Prioridad: {value['Prioridad']}")
+                print(" ")
+                cont += 1
 class Menu:
     def principal(self):
         print("Bienvenido a la cafeteria bing bong")
@@ -69,6 +71,7 @@ contP = codes.Get_cont_p()
 see_p = See_Pedido()
 menus = Menu()
 out = 0
+see_p.Urgente()
 while 0 != 1:
     try:
         menus.principal()
