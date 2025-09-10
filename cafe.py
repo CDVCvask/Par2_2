@@ -23,7 +23,11 @@ class See_Pedido:
                 with open("pedidos.log.txt","w") as file:
                     file.write(f"{code}:{value['Cliente']}:{value['Producto']}:{value['Cantidad']}:{value['Prioridad']}\n")
     def Load_Pedidos(self):
-        pass
+        with open("pedidos.log.txt","r") as file:
+            for line in file:
+                line = line.strip()
+                # (codigo,clientes,productos,cantidad,prioridad)
+                #self.pedidos[codigo] = {'Cliente':clientes,'Producto':productos,'Cantidad':cantidad,'Prioridad':prioridad}
 class Menu:
     def principal(self):
         print("Bienvenido a la cafeteria bing bong")
