@@ -23,10 +23,13 @@ class See_Pedido:
                 with open("pedidos.log.txt","w") as file:
                     file.write(f"{code}:{value['Cliente']}:{value['Producto']}:{value['Cantidad']}:{value['Prioridad']}\n")
     def Load_Pedidos(self):
-        with open("pedidos.log.txt","r") as file:
-            for line in file:
-                (codigo,clientes,productos,cantidad,prioridad) = line.split(":")
-                self.pedidos[codigo] = {'Cliente':clientes,'Producto':productos,'Cantidad':cantidad,'Prioridad':prioridad}
+        try:
+            with open("pedidos.log.txt","r") as file:
+                for line in file:
+                    (codigo,clientes,productos,cantidad,prioridad) = line.split(":")
+                    self.pedidos[codigo] = {'Cliente':clientes,'Producto':productos,'Cantidad':cantidad,'Prioridad':prioridad}
+        except FileNotFoundError:
+            print("No existe el archivo pedidos.log.txt")
 class Menu:
     def principal(self):
         print("Bienvenido a la cafeteria bing bong")
@@ -38,8 +41,11 @@ class Codes:
         with open("codigos.txt","w") as file:
             file.write(f"{pedidos}\n")
     def Load_codes(self):
-        with open("codigos.txt","r") as file:
-            pass
+        try:
+            with open("codigos.txt","r") as file:
+                pass
+        except FileNotFoundError:
+            print("No existe el archivo codigos.txt")
 codes = Codes()
 contP = 0
 see_p = See_Pedido()
