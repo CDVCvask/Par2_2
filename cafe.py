@@ -25,9 +25,8 @@ class See_Pedido:
     def Load_Pedidos(self):
         with open("pedidos.log.txt","r") as file:
             for line in file:
-                line = line.strip()
-                # (codigo,clientes,productos,cantidad,prioridad)
-                #self.pedidos[codigo] = {'Cliente':clientes,'Producto':productos,'Cantidad':cantidad,'Prioridad':prioridad}
+                (codigo,clientes,productos,cantidad,prioridad) = line.split(":")
+                self.pedidos[codigo] = {'Cliente':clientes,'Producto':productos,'Cantidad':cantidad,'Prioridad':prioridad}
 class Menu:
     def principal(self):
         print("Bienvenido a la cafeteria bing bong")
