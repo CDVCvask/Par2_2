@@ -17,8 +17,44 @@ class Menu:
 contP = 0
 see_p = See_Pedido()
 menus = Menu()
+out = 0
 while 0 != 1:
     try:
         menus.principal()
+        opt = input("Ingrese la opción que desee: ")
+        match opt:
+            case "1":
+                cont = 1
+                while 0 != 1:
+                    print(" ")
+                    print(f"Datos del pedido {cont}")
+                    print(" ")
+                    code_p = f"P{contP}"
+                    name = input("Ingrese el nombre del cliente(Ingrese el código para salir): ")
+                    if name.strip() == "":
+                        print("No puede dejar este espacio vacío")
+                    elif name == "OURO":
+                        print("Regresando al menú principal")
+                        print(" ")
+                        break
+                    else:
+                        product = input("Ingrese el producto: ")
+                        if product.strip() == "":
+                            print("No puede dejar este espacio vacío")
+                        else:
+                            num = int(input("Ingrese la cantidad del producto: "))
+                            if num <=0 or num > 1000:
+                                print("La cantidad ingresada no es valida")
+                            else:
+                                urgent = input("El pedido es Normal o Urgente?(Para normal ingrese N para Urgente ingrese U): ")
+                                if urgent.upper() == "N":
+                                    urgen = "Normal"
+            case "2":
+                print("Ver pedidos")
+            case "3":
+                print("Gracias por utilizar el programa")
+                out = 1
     except ValueError:
         print("El tipo de dato ingresado no es valido")
+    if out == 1:
+        break
